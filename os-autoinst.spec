@@ -4,16 +4,17 @@
 #
 Name     : os-autoinst
 Version  : 4.5.1527308405.8b586d5
-Release  : 1
+Release  : 2
 URL      : https://github.com/os-autoinst/os-autoinst/archive/4.5.1527308405.8b586d5.tar.gz
 Source0  : https://github.com/os-autoinst/os-autoinst/archive/4.5.1527308405.8b586d5.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
-Requires: os-autoinst-bin
-Requires: os-autoinst-lib
-Requires: os-autoinst-config
-Requires: os-autoinst-license
+Requires: os-autoinst-bin = %{version}-%{release}
+Requires: os-autoinst-config = %{version}-%{release}
+Requires: os-autoinst-lib = %{version}-%{release}
+Requires: os-autoinst-libexec = %{version}-%{release}
+Requires: os-autoinst-license = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : pkgconfig(fftw3)
 BuildRequires : pkgconfig(opencv)
@@ -29,8 +30,9 @@ os-autoinst image:https://api.travis-ci.org/os-autoinst/os-autoinst.svg?branch=m
 %package bin
 Summary: bin components for the os-autoinst package.
 Group: Binaries
-Requires: os-autoinst-config
-Requires: os-autoinst-license
+Requires: os-autoinst-libexec = %{version}-%{release}
+Requires: os-autoinst-config = %{version}-%{release}
+Requires: os-autoinst-license = %{version}-%{release}
 
 %description bin
 bin components for the os-autoinst package.
@@ -55,10 +57,21 @@ doc components for the os-autoinst package.
 %package lib
 Summary: lib components for the os-autoinst package.
 Group: Libraries
-Requires: os-autoinst-license
+Requires: os-autoinst-libexec = %{version}-%{release}
+Requires: os-autoinst-license = %{version}-%{release}
 
 %description lib
 lib components for the os-autoinst package.
+
+
+%package libexec
+Summary: libexec components for the os-autoinst package.
+Group: Default
+Requires: os-autoinst-config = %{version}-%{release}
+Requires: os-autoinst-license = %{version}-%{release}
+
+%description libexec
+libexec components for the os-autoinst package.
 
 
 %package license
@@ -77,27 +90,42 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532958884
+export SOURCE_DATE_EPOCH=1539991120
 %autogen --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1532958884
+export SOURCE_DATE_EPOCH=1539991120
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/os-autoinst
-cp COPYING %{buildroot}/usr/share/doc/os-autoinst/COPYING
-%make_install
+mkdir -p %{buildroot}/usr/share/package-licenses/os-autoinst
+cp COPYING %{buildroot}/usr/share/package-licenses/os-autoinst/COPYING
+%make_install INSTALLDIRS=vendor
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/auto/tinycv/.packlist
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/tinycv.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/auto/tinycv/.packlist
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/tinycv.pm
 
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/debugviewer
 /usr/bin/isotovideo
 /usr/bin/snd2png
+
+%files config
+%defattr(-,root,root,-)
+/usr/lib/systemd/system/os-autoinst-openvswitch.service
+
+%files doc
+%defattr(0644,root,root,0755)
+%doc /usr/share/doc/os\-autoinst/*
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/auto/tinycv/tinycv.so
+
+%files libexec
+%defattr(-,root,root,-)
 /usr/libexec/os-autoinst/OpenQA/Benchmark/Stopwatch.pm
 /usr/libexec/os-autoinst/OpenQA/Exceptions.pm
 /usr/libexec/os-autoinst/OpenQA/Test/RunArgs.pm
@@ -155,18 +183,6 @@ cp COPYING %{buildroot}/usr/share/doc/os-autoinst/COPYING
 /usr/libexec/os-autoinst/tools/tidy
 /usr/libexec/os-autoinst/videoencoder
 
-%files config
-%defattr(-,root,root,-)
-/usr/lib/systemd/system/os-autoinst-openvswitch.service
-
-%files doc
-%defattr(0644,root,root,0755)
-%doc /usr/share/doc/os\-autoinst/*
-
-%files lib
-%defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/auto/tinycv/tinycv.so
-
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/os-autoinst/COPYING
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/os-autoinst/COPYING
