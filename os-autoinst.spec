@@ -4,7 +4,7 @@
 #
 Name     : os-autoinst
 Version  : 4.5.1527308405.8b586d5
-Release  : 3
+Release  : 4
 URL      : https://github.com/os-autoinst/os-autoinst/archive/4.5.1527308405.8b586d5.tar.gz
 Source0  : https://github.com/os-autoinst/os-autoinst/archive/4.5.1527308405.8b586d5.tar.gz
 Summary  : No detailed summary available
