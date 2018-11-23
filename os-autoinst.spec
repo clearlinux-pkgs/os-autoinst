@@ -103,8 +103,8 @@ cp COPYING %{buildroot}/usr/share/package-licenses/os-autoinst/COPYING
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/auto/tinycv/.packlist
-/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/tinycv.pm
+/usr/lib/perl5/vendor_perl/5.28.0/x86_64-linux-thread-multi/auto/tinycv/.packlist
+/usr/lib/perl5/vendor_perl/5.28.0/x86_64-linux-thread-multi/tinycv.pm
 
 %files bin
 %defattr(-,root,root,-)
@@ -122,7 +122,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/os-autoinst/COPYING
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/auto/tinycv/tinycv.so
+/usr/lib/perl5/vendor_perl/5.28.0/x86_64-linux-thread-multi/auto/tinycv/tinycv.so
 
 %files libexec
 %defattr(-,root,root,-)
