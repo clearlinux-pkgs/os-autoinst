@@ -6,7 +6,6 @@ libogg.so.0
 libopencv_core.so.4.1
 libopencv_highgui.so.4.1
 libopencv_imgcodecs.so.4.1
-libopencv_imgproc.so.4.1
 libsndfile.so.1
 libstdc++.so.6
 libtheoradec.so.1
