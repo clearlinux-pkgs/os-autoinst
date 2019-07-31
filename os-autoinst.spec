@@ -4,22 +4,33 @@
 #
 Name     : os-autoinst
 Version  : 4.5.1527308405.8b586d5
-Release  : 6
+Release  : 7
 URL      : https://github.com/os-autoinst/os-autoinst/archive/4.5.1527308405.8b586d5.tar.gz
 Source0  : https://github.com/os-autoinst/os-autoinst/archive/4.5.1527308405.8b586d5.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: os-autoinst-bin = %{version}-%{release}
-Requires: os-autoinst-config = %{version}-%{release}
+Requires: os-autoinst-data = %{version}-%{release}
 Requires: os-autoinst-lib = %{version}-%{release}
 Requires: os-autoinst-libexec = %{version}-%{release}
 Requires: os-autoinst-license = %{version}-%{release}
+Requires: os-autoinst-services = %{version}-%{release}
+BuildRequires : automake
+BuildRequires : automake-dev
 BuildRequires : buildreq-cpan
+BuildRequires : gettext-bin
+BuildRequires : libtool
+BuildRequires : libtool-dev
+BuildRequires : m4
+BuildRequires : pkg-config-dev
 BuildRequires : pkgconfig(fftw3)
 BuildRequires : pkgconfig(opencv)
 BuildRequires : pkgconfig(sndfile)
 BuildRequires : pkgconfig(theoraenc)
+Patch1: 0001-Include-OpenCV-legacy-constants.patch
+Patch2: 0002-Update-references-to-old-highgui.h.patch
+Patch3: 0003-videoencoder-Use-CXXFLAGS-instead-of-CFLAGS.patch
 
 %description
 os-autoinst image:https://api.travis-ci.org/os-autoinst/os-autoinst.svg?branch=master[link=https://travis-ci.org/os-autoinst/os-autoinst] image:https://coveralls.io/repos/github/os-autoinst/os-autoinst/badge.svg?branch=master[link=https://coveralls.io/github/os-autoinst/os-autoinst?branch=master]
@@ -30,20 +41,21 @@ os-autoinst image:https://api.travis-ci.org/os-autoinst/os-autoinst.svg?branch=m
 %package bin
 Summary: bin components for the os-autoinst package.
 Group: Binaries
+Requires: os-autoinst-data = %{version}-%{release}
 Requires: os-autoinst-libexec = %{version}-%{release}
-Requires: os-autoinst-config = %{version}-%{release}
 Requires: os-autoinst-license = %{version}-%{release}
+Requires: os-autoinst-services = %{version}-%{release}
 
 %description bin
 bin components for the os-autoinst package.
 
 
-%package config
-Summary: config components for the os-autoinst package.
-Group: Default
+%package data
+Summary: data components for the os-autoinst package.
+Group: Data
 
-%description config
-config components for the os-autoinst package.
+%description data
+data components for the os-autoinst package.
 
 
 %package doc
@@ -57,6 +69,7 @@ doc components for the os-autoinst package.
 %package lib
 Summary: lib components for the os-autoinst package.
 Group: Libraries
+Requires: os-autoinst-data = %{version}-%{release}
 Requires: os-autoinst-libexec = %{version}-%{release}
 Requires: os-autoinst-license = %{version}-%{release}
 
@@ -67,7 +80,6 @@ lib components for the os-autoinst package.
 %package libexec
 Summary: libexec components for the os-autoinst package.
 Group: Default
-Requires: os-autoinst-config = %{version}-%{release}
 Requires: os-autoinst-license = %{version}-%{release}
 
 %description libexec
@@ -82,20 +94,39 @@ Group: Default
 license components for the os-autoinst package.
 
 
+%package services
+Summary: services components for the os-autoinst package.
+Group: Systemd services
+
+%description services
+services components for the os-autoinst package.
+
+
 %prep
 %setup -q -n os-autoinst-4.5.1527308405.8b586d5
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1539991120
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1564596890
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %autogen --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1539991120
+export SOURCE_DATE_EPOCH=1564596890
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/os-autoinst
 cp COPYING %{buildroot}/usr/share/package-licenses/os-autoinst/COPYING
@@ -103,8 +134,8 @@ cp COPYING %{buildroot}/usr/share/package-licenses/os-autoinst/COPYING
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.1x86_64-linux-thread-multi/auto/tinycv/.packlist
-/usr/lib/perl5/vendor_perl/5.28.1x86_64-linux-thread-multi/tinycv.pm
+/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/auto/tinycv/.packlist
+/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/tinycv.pm
 
 %files bin
 %defattr(-,root,root,-)
@@ -112,9 +143,9 @@ cp COPYING %{buildroot}/usr/share/package-licenses/os-autoinst/COPYING
 /usr/bin/isotovideo
 /usr/bin/snd2png
 
-%files config
+%files data
 %defattr(-,root,root,-)
-/usr/lib/systemd/system/os-autoinst-openvswitch.service
+/usr/share/dbus-1/system.d/org.opensuse.os_autoinst.switch.conf
 
 %files doc
 %defattr(0644,root,root,0755)
@@ -122,7 +153,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/os-autoinst/COPYING
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.1x86_64-linux-thread-multi/auto/tinycv/tinycv.so
+/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/auto/tinycv/tinycv.so
 
 %files libexec
 %defattr(-,root,root,-)
@@ -186,3 +217,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/os-autoinst/COPYING
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/os-autoinst/COPYING
+
+%files services
+%defattr(-,root,root,-)
+/usr/lib/systemd/system/os-autoinst-openvswitch.service
