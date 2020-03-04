@@ -4,7 +4,7 @@
 #
 Name     : os-autoinst
 Version  : 8d4b96b9d9c4557a02ab36a481594c031f1973f7
-Release  : 10
+Release  : 11
 URL      : https://github.com/os-autoinst/os-autoinst/archive/8d4b96b9d9c4557a02ab36a481594c031f1973f7/os-autoinst-8d4b96b9d9c4557a02ab36a481594c031f1973f7.tar.gz
 Source0  : https://github.com/os-autoinst/os-autoinst/archive/8d4b96b9d9c4557a02ab36a481594c031f1973f7/os-autoinst-8d4b96b9d9c4557a02ab36a481594c031f1973f7.tar.gz
 Summary  : OS-level test automation
