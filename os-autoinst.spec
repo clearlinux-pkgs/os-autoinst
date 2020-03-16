@@ -4,7 +4,7 @@
 #
 Name     : os-autoinst
 Version  : 8d4b96b9d9c4557a02ab36a481594c031f1973f7
-Release  : 11
+Release  : 12
 URL      : https://github.com/os-autoinst/os-autoinst/archive/8d4b96b9d9c4557a02ab36a481594c031f1973f7/os-autoinst-8d4b96b9d9c4557a02ab36a481594c031f1973f7.tar.gz
 Source0  : https://github.com/os-autoinst/os-autoinst/archive/8d4b96b9d9c4557a02ab36a481594c031f1973f7/os-autoinst-8d4b96b9d9c4557a02ab36a481594c031f1973f7.tar.gz
 Summary  : OS-level test automation
@@ -115,7 +115,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1579020080
+export SOURCE_DATE_EPOCH=1584401976
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -128,7 +128,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1579020080
+export SOURCE_DATE_EPOCH=1584401976
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/os-autoinst
 cp %{_builddir}/os-autoinst-8d4b96b9d9c4557a02ab36a481594c031f1973f7/COPYING %{buildroot}/usr/share/package-licenses/os-autoinst/4cc77b90af91e615a64ae04893fdffa7939db84c
@@ -236,9 +236,9 @@ cp %{_builddir}/os-autoinst-8d4b96b9d9c4557a02ab36a481594c031f1973f7/COPYING %{b
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/auto/tinycv/.packlist
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/auto/tinycv/tinycv.so
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/tinycv.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/auto/tinycv/.packlist
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/auto/tinycv/tinycv.so
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/tinycv.pm
 
 %files services
 %defattr(-,root,root,-)
