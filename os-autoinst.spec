@@ -236,9 +236,9 @@ cp %{_builddir}/os-autoinst-8d4b96b9d9c4557a02ab36a481594c031f1973f7/COPYING %{b
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/auto/tinycv/.packlist
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/auto/tinycv/tinycv.so
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/tinycv.pm
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/auto/tinycv/.packlist
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/auto/tinycv/tinycv.so
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/tinycv.pm
 
 %files services
 %defattr(-,root,root,-)
