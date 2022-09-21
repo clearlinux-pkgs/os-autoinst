@@ -1,0 +1,3 @@
+0001-Include-OpenCV-legacy-constants.patch
+0002-Update-references-to-old-highgui.h.patch
+0003-videoencoder-Use-CXXFLAGS-instead-of-CFLAGS.patch

@@ -1,1 +1,1 @@
-install-openvswitch
+INSTALLDIRS=vendor

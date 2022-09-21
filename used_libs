@@ -3,10 +3,9 @@ libfftw3.so.3
 libgcc_s.so.1
 libm.so.6
 libogg.so.0
-libopencv_core.so.406
-libopencv_highgui.so.406
-libopencv_imgcodecs.so.406
-libopencv_imgproc.so.406
+libopencv_core.so.405
+libopencv_highgui.so.405
+libopencv_imgcodecs.so.405
 libsndfile.so.1
 libstdc++.so.6
 libtheoradec.so.1
