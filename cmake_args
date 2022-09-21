@@ -1,0 +1,2 @@
+-DOS_AUTOINST_DATA_DIR="libexec/os-autoinst"
+-DOS_AUTOINST_DOC_DIR="share/doc/os-autoinst"

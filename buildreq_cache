@@ -1,0 +1,4 @@
+d1930d4b990d090fa6209c58129642515be82e82
+pkgconfig(fftw3)
+pkgconfig(sndfile)
+pkgconfig(theoraenc)
