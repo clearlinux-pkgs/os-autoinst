@@ -7,7 +7,7 @@
 #
 Name     : os-autoinst
 Version  : d1930d4b990d090fa6209c58129642515be82e82
-Release  : 35
+Release  : 36
 URL      : https://github.com/os-autoinst/os-autoinst/archive/d1930d4b990d090fa6209c58129642515be82e82/os-autoinst-d1930d4b990d090fa6209c58129642515be82e82.tar.gz
 Source0  : https://github.com/os-autoinst/os-autoinst/archive/d1930d4b990d090fa6209c58129642515be82e82/os-autoinst-d1930d4b990d090fa6209c58129642515be82e82.tar.gz
 Summary  : test package for os-autoinst
